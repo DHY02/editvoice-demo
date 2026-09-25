@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Audio samples for EditVoice.">
+    <title>EditVoice</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #111;
+        --muted: #555;
+        --line: #aaa;
+        --link: #0645ad;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+
+      body {
+        margin: 0;
+        background: #fff;
+        color: var(--ink);
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      a { color: var(--link); }
+
+      .page {
+        width: min(1180px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 38px 0 56px;
+      }
+
+      header { text-align: center; }
+
+      h1 {
+        max-width: 1020px;
+        margin: 0 auto 15px;
+        font-size: clamp(1.8rem, 3.4vw, 2.55rem);
+        font-weight: 650;
+        line-height: 1.18;
+      }
+
+      .authors {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 3px 15px;
+        margin: 0 auto 5px;
+        font-size: 1rem;
+      }
+
+      .affiliations { color: var(--muted); }
+      .affiliations span { display: block; }
+      .links {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin: 13px 0 0;
+      }
+
+      .code-button {
+        display: inline-block;
+        padding: 3px 11px;
+        border: 1px solid #777;
+        border-radius: 1px;
+        color: var(--ink);
+        text-decoration: none;
+      }
+
+      .code-button {
+        border-color: #bbb;
+        color: var(--muted);
+        cursor: default;
+      }
+
+      main { margin-top: 34px; }
+      section { margin-top: 42px; }
+
+      h2 {
+        margin: 0 0 17px;
+        padding-bottom: 4px;
+        border-bottom: 2px solid #333;
+        font-size: 1.5rem;
+        font-weight: 650;
+        line-height: 1.25;
+      }
+
+      h3 {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .abstract {
+        max-width: 980px;
+        margin: 0;
+        text-align: left;
+      }
+
+      .figure {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 22px auto 0;
+      }
+
+      .samples {
+        display: grid;
+        gap: 21px;
+      }
+
+      .sample {
+        min-width: 0;
+        padding-bottom: 21px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .sample:last-child { border-bottom: 0; }
+
+      .text-line {
+        margin: 7px 0 13px;
+        color: #2d2d2d;
+        overflow-wrap: anywhere;
+      }
+
+      .text-label {
+        margin-right: 6px;
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .audio-scroll {
+        max-width: 100%;
+        overflow-x: auto;
+      }
+
+      .audio-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+      }
+
+      .audio-table th {
+        padding: 6px 5px;
+        border: 1px solid var(--line);
+        font-size: 0.78rem;
+        font-weight: 600;
+        text-align: center;
+        white-space: nowrap;
+      }
+
+      .audio-table td {
+        padding: 7px 5px 5px;
+        border: 1px solid var(--line);
+        text-align: center;
+      }
+
+      audio {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        height: 34px;
+      }
+
+      .editing-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 12px;
+      }
+
+      .editing-group h3 { margin-bottom: 6px; }
+
+      .source-audio {
+        margin: 8px 0 0;
+      }
+
+      .source-audio .text-label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .original-audio {
+        width: min(310px, 100%);
+        margin: 0;
+      }
+
+      footer {
+        margin-top: 36px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.85rem;
+        text-align: center;
+      }
+
+      @media (max-width: 800px) {
+        .page {
+          width: min(100% - 24px, 1180px);
+          padding-top: 24px;
+        }
+        h1 { font-size: 1.65rem; }
+        .editing-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <h1>EditVoice: Variable-Length Non-Autoregressive Zero-Shot TTS and Speech Editing with Edit Flows</h1>
+        <div id="authors" class="authors"></div>
+        <div id="affiliations" class="affiliations"></div>
+        <p class="links">
+          <span class="code-button" aria-disabled="true">Code (Coming Soon)</span>
+        </p>
+      </header>
+
+      <main>
+        <section aria-labelledby="abstract-title">
+          <h2 id="abstract-title">Abstract</h2>
+          <p id="summary" class="abstract"></p>
+          <img class="figure" src="assets/images/editvoice-overview.png?v=1" alt="EditVoice architecture">
+        </section>
+
+        <section aria-labelledby="tts-title">
+          <h2 id="tts-title">Zero-Shot TTS</h2>
+          <div id="seedtts" class="samples"></div>
+        </section>
+
+        <section aria-labelledby="editing-title">
+          <h2 id="editing-title">Speech Editing</h2>
+          <div id="realedit" class="samples"></div>
+        </section>
+
+        <section aria-labelledby="consistency-title">
+          <h2 id="consistency-title">Analysis of Local Prompt Consistency in CPS</h2>
+          <div id="prompt-consistency" class="samples"></div>
+        </section>
+      </main>
+
+      <footer>EditVoice</footer>
+    </div>
+
+    <script src="assets/data/demo-data.js?v=2"></script>
+    <script>
+      const demo = window.editVoiceDemo;
+
+      function appendTextList(container, values) {
+        values.forEach((value) => {
+          const span = document.createElement("span");
+          span.textContent = value;
+          container.append(span);
+        });
+      }
+
+      function textLine(label, value) {
+        const paragraph = document.createElement("p");
+        paragraph.className = "text-line";
+        const prefix = document.createElement("span");
+        prefix.className = "text-label";
+        prefix.textContent = label;
+        const content = document.createElement("span");
+        content.textContent = value;
+        paragraph.append(prefix, content);
+        return paragraph;
+      }
+
+      function segmentedTextLine(label, segments) {
+        const paragraph = document.createElement("p");
+        paragraph.className = "text-line";
+        const prefix = document.createElement("span");
+        prefix.className = "text-label";
+        prefix.textContent = label;
+        paragraph.append(prefix);
+        segments.forEach((segment) => {
+          const content = segment.emphasis
+            ? document.createElement("strong")
+            : document.createElement("span");
+          content.textContent = segment.text;
+          paragraph.append(content);
+        });
+        return paragraph;
+      }
+
+      function audioPlayer(source, label) {
+        const player = document.createElement("audio");
+        player.controls = true;
+        player.preload = "none";
+        player.src = source;
+        player.setAttribute("aria-label", label);
+        return player;
+      }
+
+      function audioTable(entries) {
+        const scroll = document.createElement("div");
+        scroll.className = "audio-scroll";
+        const table = document.createElement("table");
+        table.className = "audio-table";
+        table.style.minWidth = `${entries.length * 180}px`;
+        const head = document.createElement("thead");
+        const headRow = document.createElement("tr");
+        const body = document.createElement("tbody");
+        const audioRow = document.createElement("tr");
+
+        entries.forEach((entry) => {
+          const heading = document.createElement("th");
+          heading.scope = "col";
+          heading.textContent = entry.label;
+          const cell = document.createElement("td");
+          cell.append(audioPlayer(entry.audio, entry.label));
+          headRow.append(heading);
+          audioRow.append(cell);
+        });
+
+        head.append(headRow);
+        body.append(audioRow);
+        table.append(head, body);
+        scroll.append(table);
+        return scroll;
+      }
+
+      function exampleTitle(index) {
+        const title = document.createElement("h3");
+        title.textContent = `Example ${String(index + 1).padStart(2, "0")}`;
+        return title;
+      }
+
+      function renderSeedTTS() {
+        const root = document.querySelector("#seedtts");
+        demo.seedTTS.forEach((sample, index) => {
+          const article = document.createElement("article");
+          article.className = "sample";
+          article.append(exampleTitle(index), textLine("Target text:", sample.targetText), audioTable(sample.audios));
+          root.append(article);
+        });
+      }
+
+      function editingGroup(titleText, entries) {
+        const group = document.createElement("div");
+        group.className = "editing-group";
+        const title = document.createElement("h3");
+        title.textContent = titleText;
+        group.append(title, audioTable(entries));
+        return group;
+      }
+
+      function renderRealEdit() {
+        const root = document.querySelector("#realedit");
+        demo.realEdit.forEach((sample, index) => {
+          const article = document.createElement("article");
+          article.className = "sample";
+          const sourceAudio = document.createElement("div");
+          sourceAudio.className = "source-audio";
+          const label = document.createElement("span");
+          label.className = "text-label";
+          label.textContent = "Original Recording:";
+          const original = audioPlayer(sample.originalAudio, "Original Recording");
+          original.className = "original-audio";
+          sourceAudio.append(label, original);
+          const grid = document.createElement("div");
+          grid.className = "editing-grid";
+          grid.append(
+            editingGroup("Cascaded", sample.cascaded),
+            editingGroup("End-to-End", sample.endToEnd)
+          );
+          article.append(
+            exampleTitle(index),
+            textLine("Original Transcript:", sample.originalText),
+            sourceAudio,
+            segmentedTextLine("Target Transcript:", sample.targetSegments),
+            grid
+          );
+          root.append(article);
+        });
+      }
+
+      function renderPromptConsistency() {
+        const root = document.querySelector("#prompt-consistency");
+        demo.promptConsistency.forEach((sample, index) => {
+          const article = document.createElement("article");
+          article.className = "sample";
+          article.append(exampleTitle(index), textLine("Target text:", sample.targetText), audioTable(sample.audios));
+          root.append(article);
+        });
+      }
+
+      appendTextList(document.querySelector("#authors"), demo.paper.authors);
+      appendTextList(document.querySelector("#affiliations"), demo.paper.affiliations);
+      document.querySelector("#summary").textContent = demo.paper.summary;
+      renderSeedTTS();
+      renderRealEdit();
+      renderPromptConsistency();
+    </script>
+  </body>
+</html>
